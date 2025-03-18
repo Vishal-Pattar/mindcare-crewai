@@ -1,17 +1,51 @@
-research_task:
+intent_classification_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Process user inputs and classify them into one of the predefined intent categories:
+    1. Sharing Personal Experiences - Expressing personal thoughts without seeking advice.
+    2. Seeking Emotional Support - Expressing distress and looking for empathy.
+    3. Requesting Guidance - Seeking advice, coping strategies, or motivation.
+    4. Crisis Intervention - Indicating urgent distress or crisis situations.
+    5. Therapy & Professional Help - Inquiring about structured mental health support.
+    6. General Well-being Discussion - Engaging in casual check-ins about mental state.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A JSON response containing:
+    - Confidence scores for each intent category.
+    - Identification of the primary intent with the highest score.
+    - A summary highlighting any ambiguous inputs and suggestions for model refinement if necessary.
+  agent: intent_recognition_agent
 
-reporting_task:
+compliance_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Audit the provided text-based communications to ensure they adhere to medical, legal, and data privacy standards. 
+    Identify any instances of unauthorized medical advice, privacy violations (e.g., breaches of HIPAA or Indian IT rules), or misleading/illegal content. 
+    Provide actionable recommendations to mitigate identified risks.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A detailed compliance audit report that includes:
+      - A list of flagged content and corresponding violation categories.
+      - Explanations of why the content breaches specific compliance standards.
+      - Recommendations for adjustments to ensure full compliance.
+  agent: compliance_agent
+
+correction_task:
+  description: >
+    Analyze and refine the provided text by identifying and correcting grammatical, spelling, punctuation, and structural errors. 
+    Enhance the text’s clarity, coherence, and overall readability while preserving the original intent. 
+    Suggest improvements in phrasing and sentence construction where necessary.
+  expected_output: >
+    A revised version of the text with:
+      - All errors corrected.
+      - Annotations or a summary outlining the major corrections and enhancements made.
+      - Suggestions for any further improvements to elevate professionalism and clarity.
+  agent: correction_agent
+
+memory_task:
+  description: >
+    Store and manage historical user interaction data to provide continuity and personalized responses in ongoing conversations. 
+    Retrieve relevant past interactions, preferences, and project details to ensure context-aware responses that minimize redundancy. 
+    Dynamically update and recall user-specific information as new interactions occur.
+  expected_output: >
+    A context-aware interaction summary that includes:
+      - Relevant historical details from previous conversations.
+      - Updated user preferences, goals, and project specifics.
+      - Insights or suggestions for optimizing future interactions based on stored data.
+  agent: memory_agent
