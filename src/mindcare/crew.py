@@ -42,6 +42,20 @@ class Mindcare():
 			verbose=True
 		)
 	
+	@agent
+	def humanizer_agent(self) -> Agent:
+		return Agent(
+			config=self.agents_config['humanizer_agent'],
+			verbose=True
+		)
+	
+	@agent
+	def psychiatrist_agent(self) -> Agent:
+		return Agent(
+			config=self.agents_config['psychiatrist_agent'],
+			verbose=True
+		)
+	
 	# To learn more about structured task outputs, 
 	# task dependencies, and task callbacks, check out the documentation:
 	# https://docs.crewai.com/concepts/tasks#overview-of-a-task
@@ -70,6 +84,20 @@ class Mindcare():
 	def memory_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['memory_task'],
+			output_file='report.md'
+		)
+	
+	@task
+	def humanizer_task(self) -> Task:
+		return Task(
+			config=self.tasks_config['humanizer_task'],
+			output_file='report.md'
+		)
+	
+	@task
+	def psychiatrist_taskk(self) -> Task:
+		return Task(
+			config=self.tasks_config['psychiatrist_task'],
 			output_file='report.md'
 		)
 

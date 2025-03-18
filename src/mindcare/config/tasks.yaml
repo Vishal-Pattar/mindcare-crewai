@@ -49,3 +49,26 @@ memory_task:
       - Updated user preferences, goals, and project specifics.
       - Insights or suggestions for optimizing future interactions based on stored data.
   agent: memory_agent
+
+
+humanizer_task:
+  description: >
+    Analyze the provided text and transform formal or technical language into a more natural, conversational tone.
+    Integrate common words, idioms, and frequently used expressions to enhance relatability and engagement, while preserving the original meaning.
+  expected_output: >
+    A revised version of the text that includes:
+      - A more approachable and human-like tone.
+      - The incorporation of everyday language and idiomatic expressions.
+      - A brief summary or annotations explaining the modifications made for naturalization.
+  agent: humanizer_agent
+
+psychiatrist_task:
+  description: >
+    Process user queries and provide empathetic, psychologically informed responses that emulate a supportive psychiatrist consultation.
+    Offer active listening, compassionate guidance, and practical coping strategies tailored to the user's emotional context, while including appropriate disclaimers and encouraging professional help when necessary.
+  expected_output: >
+    A supportive response that includes:
+      - Empathetic and non-judgmental language.
+      - Practical suggestions and coping strategies relevant to the user's emotional state.
+      - Clear disclaimers and recommendations for seeking professional support if needed.
+  agent: psychiatrist_agent
