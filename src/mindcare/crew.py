@@ -13,33 +13,63 @@ class Mindcare():
 
 	# If you would like to add tools to your agents, you can learn more about it here:
 	# https://docs.crewai.com/concepts/agents#agent-tools
+	
 	@agent
-	def researcher(self) -> Agent:
+	def intent_recognition_agent(self) -> Agent:
 		return Agent(
-			config=self.agents_config['researcher'],
+			config=self.agents_config['intent_recognition_agent'],
 			verbose=True
 		)
 
 	@agent
-	def reporting_analyst(self) -> Agent:
+	def compliance_agent(self) -> Agent:
 		return Agent(
-			config=self.agents_config['reporting_analyst'],
+			config=self.agents_config['compliance_agent'],
 			verbose=True
 		)
-
+	
+	@agent
+	def correction_agent(self) -> Agent:
+		return Agent(
+			config=self.agents_config['correction_agent'],
+			verbose=True
+		)
+	
+	@agent
+	def memory_agent(self) -> Agent:
+		return Agent(
+			config=self.agents_config['memory_agent'],
+			verbose=True
+		)
+	
 	# To learn more about structured task outputs, 
 	# task dependencies, and task callbacks, check out the documentation:
 	# https://docs.crewai.com/concepts/tasks#overview-of-a-task
+	
 	@task
-	def research_task(self) -> Task:
+	def intent_classification_task(self) -> Task:
 		return Task(
-			config=self.tasks_config['research_task'],
+			config=self.tasks_config['intent_classification_task'],
 		)
 
 	@task
-	def reporting_task(self) -> Task:
+	def compliance_task(self) -> Task:
 		return Task(
-			config=self.tasks_config['reporting_task'],
+			config=self.tasks_config['compliance_task'],
+			output_file='report.md'
+		)
+	
+	@task
+	def correction_task(self) -> Task:
+		return Task(
+			config=self.tasks_config['correction_task'],
+			output_file='report.md'
+		)
+	
+	@task
+	def memory_task(self) -> Task:
+		return Task(
+			config=self.tasks_config['memory_task'],
 			output_file='report.md'
 		)
 
